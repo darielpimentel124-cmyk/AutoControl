@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0D1117">
+  <meta name="description" content="Control de odómetro y mantenimiento de hasta 10 vehículos. Funciona sin conexión.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AutoControl">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>AutoControl Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1 id="screenTitle">Odómetro</h1>
+      <span id="savePill" class="save-pill" aria-hidden="true">✓</span>
+      <button id="vehBtn" class="veh-btn" type="button" hidden aria-label="Cambiar vehículo"></button>
+    </header>
+
+    <main id="main">
+      <section id="s-odo" class="screen active" aria-label="Odómetro"></section>
+      <section id="s-svc" class="screen" aria-label="Servicios"></section>
+      <section id="s-veh" class="screen" aria-label="Vehículo"></section>
+      <section id="s-alerts" class="screen" aria-label="Avisos y copia"></section>
+      <noscript><p class="card">Activa JavaScript para usar AutoControl Pro.</p></noscript>
+    </main>
+
+    <nav class="tabbar" aria-label="Navegación principal">
+      <button class="tab active" type="button" data-tab="odo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.6 18a8.5 8.5 0 1 1 14.8 0"/><path d="M12 14l4.2-4.2"/><circle cx="12" cy="14" r="1.6"/></svg>
+        <span>Odómetro</span><i class="badge" hidden></i>
+      </button>
+      <button class="tab" type="button" data-tab="svc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.3L3.5 17.5a2.1 2.1 0 0 0 3 3l5.9-5.9a4 4 0 0 0 5.3-5.3l-2.5 2.5-2.6-.4-.4-2.6z"/></svg>
+        <span>Servicios</span><i class="badge" hidden></i>
+      </button>
+      <button class="tab" type="button" data-tab="veh">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16.5V12l2.1-5A2 2 0 0 1 7 5.7h10A2 2 0 0 1 18.9 7L21 12v4.5"/><path d="M3 12h18"/><path d="M3 16.5h1.6M9.4 16.5h5.2M19.4 16.5H21"/><circle cx="7" cy="16.5" r="2.2"/><circle cx="17" cy="16.5" r="2.2"/></svg>
+        <span>Vehículo</span><i class="badge" hidden></i>
+      </button>
+      <button class="tab" type="button" data-tab="alerts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
+        <span>Avisos</span><i class="badge" hidden></i>
+      </button>
+    </nav>
+  </div>
+
+  <div id="sheets"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <input type="file" id="fileReceipt" accept="image/*,application/pdf" hidden>
+  <input type="file" id="fileImport" accept="application/json,.json" hidden>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
